@@ -58,7 +58,7 @@ def update_book(current_user_token, id):
 
 @api.route('/books/<id>', methods = ['DELETE'])
 @token_required
-def delete_car(current_user_token, id):
+def delete_book(current_user_token, id):
     book = Book.query.get(id)
     db.session.delete(book)
     db.session.commit()
