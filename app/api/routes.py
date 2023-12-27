@@ -56,11 +56,11 @@ def update_book(current_user_token, id):
 
 
 
-@api.route('/books/<id>', methods = ['DELETE'])
-@token_required
 def delete_book(current_user_token, id):
     book = Book.query.get(id)
-    db.session.delete(book)
-    db.session.commit()
-    response = book_schema.dump(book)
-    return jsonify(response)
+    if book:
+        db.session.delete(book)
+        db.session.commit()
+        return jsonify({'message': 'Book deleted successfully'})
+    else:
+        return jsonify({'message': 'Book not found'}), 404
