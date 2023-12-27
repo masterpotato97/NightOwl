@@ -16,6 +16,7 @@ def create_book(current_user_token):
     book_title = request.json['book_title']
     book_len = request.json['book_len']
     isbn = request.json['isbn']
+   
     user_token = current_user_token.token
 
     print(f'BIG TESTER: {current_user_token.token}')
@@ -44,7 +45,7 @@ def get_books(current_user_token):
 @token_required
 def update_book(current_user_token, id):
     book = Book.query.get(id) 
-    book.auth_name = request.json['auth_name']
+    book.author_name = request.json['author_name']
     book.book_title = request.json['book_title']
     book.book_len = request.json['book_len'] 
     book.isbn=request.json['isbn']
